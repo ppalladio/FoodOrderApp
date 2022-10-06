@@ -31,6 +31,7 @@ const init = [
 const AvailableMeals = () => {
     const mealList = init.map((meal) => (
         <MealItem
+            id={meal.id}
             key={meal.id}
             name={meal.name}
             description={meal.description}
