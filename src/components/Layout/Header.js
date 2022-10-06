@@ -6,7 +6,8 @@ function Header(props) {
         <>
             <header className={classes.header}>
                 <h1> ReactMeal</h1>
-                <HeaderCartButton/>
+                <HeaderCartButton onCartClick={props.onCartClick}/>
+                {/* //.' here the action name can be customized because its a customized component' */}
             </header>
             <div className={classes['main-image']}>
                 {/* ⬆️//.can't use dot notation because there is a dash in the class name */}

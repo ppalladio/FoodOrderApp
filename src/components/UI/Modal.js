@@ -1,10 +1,9 @@
 import classes from './Modal.module.css';
 import ReactDOM from 'react-dom';
 
-
 const Backdrop = (props) => {
-    return <div className={classes.backdrop}></div>;
-};
+    return <div className={classes.backdrop} onClick={props.onClickClose}></div>;
+};//'first calling with onCLick 
 
 const ModalOverlay = (props) => {
     return (
@@ -16,15 +15,17 @@ const ModalOverlay = (props) => {
 const portalDestination = document.getElementById('overlay');
 
 const Modal = (props) => {
-    <>
-        {/* <Backdrop />
+    return (
+        <>
+            {/* <Backdrop />
         <ModalOverlay>{props.children}</ModalOverlay> */}
-        {ReactDOM.createPortal(<Backdrop />, portalDestination)}
-        {ReactDOM.createPortal(
-            <ModalOverlay>{props.children}</ModalOverlay>,
-            portalDestination,
-        )}
-    </>;
+            {ReactDOM.createPortal(<Backdrop onClickClose={props.onClickClose}/>, portalDestination)}
+            {/* //' here we need to call the onClickClose again */}
+            {ReactDOM.createPortal(
+                <ModalOverlay>{props.children}</ModalOverlay>,
+                portalDestination)}
+        </>
+    );
 };
 
 export default Modal;
