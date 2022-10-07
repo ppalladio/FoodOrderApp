@@ -22,7 +22,7 @@ const CartProvider = (props) => {
 
     const addItemToCartHandler = (item) => {
         dispatchCart({type:'ADD',item:item});
-
+//' to make sure addItemToCartHandler is being called, for that we need to go to the place where we call [addItem] on cartContext, track to the mealItem, when the form is submitted, we want to add items to the cart
     const removeItemFromCartHandler = (item) => {};
 
     const cartContext = {
