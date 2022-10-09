@@ -8,7 +8,7 @@ const defaultState = {
 const cartReducer = (state, action) => {
     if(action.type ==='ADD'){
         const updatedItems = state.items.concat(action.item)
-        const updatedTotalAcmount = state.totalAmount + action.item.amount * action.item.price
+        const updatedTotalAcmount = state.totalAmount + action.item.amount * action.item.price;
     return{
         items: updatedItems,
         totalAmount: updatedTotalAcmount,
@@ -21,9 +21,11 @@ const CartProvider = (props) => {
     const [cartState, dispatchCart] = useReducer(cartReducer, defaultState)
 
     const addItemToCartHandler = (item) => {
-        dispatchCart({type:'ADD',item:item});
-//' to make sure addItemToCartHandler is being called, for that we need to go to the place where we call [addItem] on cartContext, track to the mealItem, when the form is submitted, we want to add items to the cart
-    const removeItemFromCartHandler = (item) => {};
+        dispatchCart({type:'ADD',item:item})};
+// ' to make sure addItemToCartHandler is being called, for that we need to go to the place where we call [addItem] on cartContext, track to the mealItem, when the form is submitted, we want to add items to the cart
+    const removeItemFromCartHandler = (id) => {
+        dispatchCart({type:'REMOVE',id:id})
+    };
 
     const cartContext = {
         items: cartState.items,
@@ -36,6 +38,6 @@ const CartProvider = (props) => {
             {props.children}
         </CartContext.Provider>
     );
-}};
+};
 
 export default CartProvider;
