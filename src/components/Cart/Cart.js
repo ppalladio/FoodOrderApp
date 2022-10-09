@@ -9,8 +9,10 @@ const Cart = (props) => {
 
     const isEmpty = ctx.items.length === 0; //.check if there is any item in the cart, is no item then dont display check out button
 
-    const itemAddHandler = (item) => {};
-    const itemRemoveHandler = (id) => {};
+    const itemAddHandler = (item) => {
+        ctx.addItem({...item,amount:1})
+    };
+    const itemRemoveHandler = (id) => {ctx.removeItem(id)};
     const cartItems = (
         <ul className={classes['cart-items']}>
             {ctx.items.map((item) => (
