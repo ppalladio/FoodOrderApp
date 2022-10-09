@@ -15,22 +15,20 @@ const cartReducer = (state, action) => {
             (item) => item.id === action.item.id,
         );
         const existedItem = state.items[existedItemID];
-        let updatedItem;
         let updatedItems;
         //> if the item existed, the set to a new object where set the existing item but update the amount.
         if (existedItem) {
-            updatedItem = {
+            const updatedItem = {
                 ...existedItem,
                 amount: existedItem.amount + action.item.amount,
             };
-            updatedItems = [...state.items ]
-            updatedItems[existedItemID] = updatedItem
+            updatedItems = [...state.items];
+            updatedItems[existedItemID] = updatedItem;
             //????what?
-        } else{
-            
+        } else {
+            updatedItems = state.items.concat(action.item);
         }
 
-        const updatedItems = state.items.concat(action.item);
         return {
             items: updatedItems,
             totalAmount: updatedTotalAcmount,
