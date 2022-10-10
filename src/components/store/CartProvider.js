@@ -5,7 +5,10 @@ const defaultState = {
     items: [],
     totalAmount: 0,
 };
+
 const cartReducer = (state, action) => {
+    //>state: last state snapshot. action:(the action was dispatched) after an action is executed, the state has changed.
+    //: add logic
     if (action.type === 'ADD') {
         const updatedTotalAcmount =
             state.totalAmount + action.item.amount * action.item.price;
@@ -35,7 +38,7 @@ const cartReducer = (state, action) => {
         };
     }
 
-    //> remove logic
+    //: remove logic
     if (action.type === 'REMOVE') {
         const existedItemID = state.items.findIndex(
             (item) => item.id === action.item.id,
@@ -61,8 +64,10 @@ const cartReducer = (state, action) => {
     return defaultState;
 };
 
+//# component function
 const CartProvider = (props) => {
     const [cartState, dispatchCart] = useReducer(cartReducer, defaultState);
+    //. the defaultstate is the initial state for cartstate snapshot
 
     const addItemToCartHandler = (item) => {
         dispatchCart({ type: 'ADD', item: item });
